@@ -45,7 +45,8 @@ button:hover {
     background-color: lightblue;
 }
 
-.clear {
+.clear,
+.backspace {
     grid-column: span 2;
     background-color: lightcoral;
 }
@@ -54,7 +55,8 @@ button:hover {
     background-color: lightgreen;
 }
 
-.clear:hover {
+.clear:hover,
+.backspace:hover {
     background-color: red;
 }
 
@@ -65,5 +67,3 @@ button:hover {
 .operator:hover {
     background-color: blue;
 }  
-```
-``` 
