@@ -26,40 +26,65 @@ document.querySelectorAll('button').forEach(button => {
 function operate (operator, num1, num2) {
     num1 = parseFloat(num1);
     num2 = parseFloat(num2);
+    let result;
 
     switch (operator) {
         case '+':
-            return add(num1, num2);
+            result = add(num1, num2);
+            break;
         case '-':
-            return subtract(num1, num2);
+            result = subtract(num1, num2);
+            break;
         case '*':
-            return multiply(num1, num2);
+            result = multiply(num1, num2);
+            break;
         case '/':
             if (num2 === 0) {
                 return 'Error';
             }
-            return divide(num1, num2);
+            result = divide(num1, num2);
+            break;
         default:
-            return  'Invalid Operator';
+            return 'Invalid Operator';
+    }
+    return Math.round(result * 100) / 100;  // rounding to 2 decimal places
+}
+
+
+function handleButtonClick(event) {
+    const buttonText = event.target.textContent;
+
+    if (['+', '-', '*', '/'].includes(buttonText)) {
+        if (firstNumber && operator) {
+            secondNumber = display.value;
+            let result = operate(operator, firstNumber, secondNumber);
+            display.value = result;
+            firstNumber = result;
+            secondNumber = '';
+        } else {
+            firstNumber = display.value;
+        }
+        operator = buttonText;
+        display.value = ''; // Clear the display for the next number input
+    } else if (buttonText === '=') {
+        secondNumber = display.value;
+        if (firstNumber && operator && secondNumber) {
+            let result = operate(operator, firstNumber, secondNumber);
+            display.value = result;
+            firstNumber = result;
+            operator = '';
+            secondNumber = '';
+        }
+    } else if (buttonText === 'C') {
+        display.value = '';
+        firstNumber = '';
+        secondNumber = '';
+        operator = '';
+    } else {
+        display.value += buttonText;
     }
 }
 
-function handleButtonClick (event) {
-   const buttonText = event.target.textContent;
-   display.value += buttonText;
-   if ([ '+', '-', '*', '/' ].includes(buttonText)) {
-         firstNumber = display.value;
-         operator = buttonText;
-         display.value = '';
-   } else if (buttonText === '=') {
-         secondNumber = display.value;
-         display.value = operate(operator, firstNumber, secondNumber);
-   } else if (buttonText === 'C') {
-         display.value = '';
-         firstNumber = '';
-         secondNumber = '';
-         operator = '';
-   }
-}
+
 
 

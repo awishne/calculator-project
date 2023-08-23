@@ -45,11 +45,25 @@ button:hover {
     background-color: lightblue;
 }
 
-#clear {
+.clear {
     grid-column: span 2;
     background-color: lightcoral;
 }
 
-#equal {
+.equal {
     background-color: lightgreen;
 }
+
+.clear:hover {
+    background-color: red;
+}
+
+.equal:hover {
+    background-color: green;
+}
+
+.operator:hover {
+    background-color: blue;
+}  
+```
+``` 
