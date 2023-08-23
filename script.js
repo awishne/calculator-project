@@ -144,5 +144,8 @@ document.addEventListener('keydown', function(event) {
 
 });
 
+document.querySelectorAll('button').forEach(button => {
+    button.addEventListener('click', handleButtonClick);
+});
 
 
